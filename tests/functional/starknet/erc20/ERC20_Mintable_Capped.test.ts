@@ -1,9 +1,13 @@
 import { expect } from "chai";
 import { starknet } from "hardhat";
-import { toUint256WithFelts, tryCatch, shouldFail } from "../utils/utils";
+import {
+  toUint256WithFelts,
+  tryCatch,
+  shouldFail,
+} from "../../../utils/starknetUtils";
 import { StarknetContract } from "hardhat/types/runtime";
 import { Account } from "@shardlabs/starknet-hardhat-plugin/dist/src/account";
-import { deployERC20 } from "../utils/deployScripts";
+import { deployERC20 } from "../../../utils/starknetDeploys";
 
 describe("ERC20_Mintable_Capped test cases", function () {
   this.timeout(300_000); // 5 min

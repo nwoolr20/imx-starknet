@@ -1,10 +1,14 @@
 import { expect } from "chai";
 import { BN } from "bn.js";
 import { starknet } from "hardhat";
-import { toUint256WithFelts, tryCatch, shouldFail } from "../utils/utils";
+import {
+  toUint256WithFelts,
+  tryCatch,
+  shouldFail,
+} from "../../../utils/starknetUtils";
 import { StarknetContract } from "hardhat/types/runtime";
 import { Account } from "@shardlabs/starknet-hardhat-plugin/dist/src/account";
-import { deployERC721 } from "../utils/deployScripts";
+import { deployERC721 } from "../../../utils/starknetDeploys";
 
 describe("Royalties Test Cases", function () {
   this.timeout(300_000); // 5 min

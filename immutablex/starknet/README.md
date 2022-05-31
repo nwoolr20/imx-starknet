@@ -118,7 +118,7 @@ npx hardhat starknet-deploy --starknet-network alpha --inputs "<name> <symbol> <
 
 ## Contribution
 
-If you wish to contribute to this repository, please check out our [contribution guidelines](../CONTRIBUTING.md). To set up the development environment:
+If you wish to contribute to this repository, please check out our [contribution guidelines](../../CONTRIBUTING.md). To set up the development environment:
 
 ### Install Python packages
 
