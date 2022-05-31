@@ -7,10 +7,10 @@ import {
   fromUint256WithFelts,
   strToFeltArr,
   feltArrToStr,
-} from "../utils/utils";
+} from "../../../utils/starknetUtils";
 import { StarknetContract } from "hardhat/types/runtime";
 import { Account } from "@shardlabs/starknet-hardhat-plugin/dist/src/account";
-import { deployERC721 } from "../utils/deployScripts";
+import { deployERC721 } from "../../../utils/starknetDeploys";
 
 // TODO: This test cases should be modularised once devnet is working
 describe("ERC721 Test Cases", function () {

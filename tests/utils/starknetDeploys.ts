@@ -4,7 +4,7 @@ import {
   StarknetContract,
   StarknetContractFactory,
 } from "hardhat/types/runtime";
-import { toUint256WithFelts } from "./utils";
+import { toUint256WithFelts } from "./starknetUtils";
 import { number, uint256 } from "starknet";
 
 export async function deployERC721(
