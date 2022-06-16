@@ -27,7 +27,6 @@ The StarkNet package includes all Cairo contracts for the above implementations.
 
 - [`@shardlabs/starknet-hardhat-plugin`](https://github.com/Shard-Labs/starknet-hardhat-plugin)
 - [`@shardlabs/starknet-devnet`](https://github.com/Shard-Labs/starknet-devnet)
-- [`starknet.js`](https://github.com/0xs34n/starknet.js)
 
 ## Contribution
 

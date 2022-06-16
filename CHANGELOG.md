@@ -24,3 +24,17 @@ Initial release!
 
 - Minor README/documentation fixes
 - Added `cairolib` as an install dependency
+
+## [0.2.0] - 2022-06-16
+
+### Added
+
+- NFT bridging protocol (Arch)
+
+### Changed
+
+- Upgrade to support StarkNet 0.9.0
+
+### Fixed
+
+- Minor README/documentation changes

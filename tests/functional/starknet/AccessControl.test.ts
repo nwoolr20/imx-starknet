@@ -2,7 +2,7 @@ import { expect } from "chai";
 import { starknet } from "hardhat";
 import { shouldFail, tryCatch } from "../../utils/starknetUtils";
 import { StarknetContract } from "hardhat/types/runtime";
-import { deployTestAccessControl } from "../../utils/starknetDeploys";
+import { deployTestAccessControl } from "./../../utils/starknetDeploys";
 import { Account } from "@shardlabs/starknet-hardhat-plugin/dist/src/account";
 
 describe("AccessControl Test Cases", function () {
