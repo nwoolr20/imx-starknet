@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='immutablex-starknet',
-    version='0.1.1',
+    version='0.2.0',
     description='Immutable X StarkNet Contracts',
     url='https://github.com/immutable/imx-starknet',
     author='Immutable',
