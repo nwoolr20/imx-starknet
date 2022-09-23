@@ -124,9 +124,7 @@ describe("Bridge Test", function () {
 
         await expect(
           bridge.deposit(testNFT.address, [depositTokenId], ownerL2Address)
-        ).to.be.revertedWith(
-          "ERC721: transfer caller is not owner nor approved"
-        );
+        ).to.be.revertedWith("ERC721: caller is not token owner nor approved");
       });
 
       it("token holder cannot execute deposit with empty NFT list", async function () {
@@ -755,7 +753,7 @@ describe("Bridge Test", function () {
         await expect(
           bridge.withdraw(newNFT.address, tokenIdsBN, owner.address)
         ).to.be.revertedWith(
-          "ERC721: approve caller is not owner nor approved for all"
+          "ERC721: approve caller is not token owner nor approved for all"
         );
       });
     });

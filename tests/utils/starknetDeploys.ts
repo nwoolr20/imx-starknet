@@ -5,7 +5,6 @@ import {
   StarknetContractFactory,
 } from "hardhat/types/runtime";
 import { toUint256WithFelts } from "./starknetUtils";
-import { number, uint256 } from "starknet";
 
 export async function deployERC721(
   owner: BigInt,
@@ -28,25 +27,7 @@ export async function deployERC721(
     default_royalty_fee_basis_points,
   });
 
-  // This lets us reuse the same contract over multiple tests - not good practice but redues test times
-  console.log("Successfully deployed");
-
-  // Call getter functions
-  const n = (await contract.call("name")).name;
-  const s = (await contract.call("symbol")).symbol;
-  const o = (
-    await contract.call("hasRole", { role: BigInt(0), account: owner })
-  ).res;
-  const r = await contract.call("getDefaultRoyalty");
-
-  // Expect to match inputs
-  expect(n).to.deep.equal(name);
-  expect(s).to.deep.equal(symbol);
-  expect(o).to.deep.equal(BigInt(1));
-  expect(r.receiver).to.deep.equal(default_royalty_receiver);
-  expect(r.feeBasisPoints).to.deep.equal(default_royalty_fee_basis_points);
-
-  console.log(`Deployed contract to ${contract.address}`);
+  console.log(`Deployed erc721 contract to ${contract.address}`);
   return contract;
 }
 
@@ -70,27 +51,7 @@ export async function deployERC20(
     cap,
   });
 
-  // Call getter functions
-  const n = (await contract.call("name")).name;
-  const s = (await contract.call("symbol")).symbol;
-  const d = (await contract.call("decimals")).decimals;
-  const o = (await contract.call("owner")).owner;
-  const c = (await contract.call("cap")).cap;
-
-  // Expect to match inputs
-  expect(n).to.deep.equal(name);
-  expect(s).to.deep.equal(symbol);
-  expect(d).to.deep.equal(decimals);
-  expect(o).to.deep.equal(owner);
-  expect(c).to.deep.equal(cap);
-
-  // Optional decoding to original types
-  console.log(`Deployed contract to ${contract.address} with args:`);
-  console.log("name: ", starknet.bigIntToShortString(n));
-  console.log("symbol: ", starknet.bigIntToShortString(s));
-  console.log("decimals: ", d.toString());
-  console.log("owner: ", number.toHex(o.toString()));
-  console.log("cap: ", uint256.uint256ToBN(c).toString());
+  console.log(`Deployed erc20 contract to ${contract.address} with args:`);
   return contract;
 }
 

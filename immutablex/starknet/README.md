@@ -159,66 +159,26 @@ protostar test ./path/to/test/file.cairo::test_name_here
 
 Hardhat setup will be required to run integration tests and hardhat tests on a local devnet. Hardhat also allows you to write and run scripts to deploy/interact with contracts in Typescript/Javascript.
 
-### Install Python packages
+If you run into issues, check the [troubleshooting](#Troubleshooting) section.
 
-Install the required packages in your active Python virtual environment from `requirements.txt`:
+### Install Poetry
 
-```
-pip install -r requirements.txt
-```
+Extensive installation instruction can be found in the [`Official Poetry Documentation`](https://python-poetry.org/docs/master/#installing-with-the-official-installer). 
 
-### Troubleshooting
-
-#### Potential issues with M1 Macs
-
-You may not have success with every version of Python. Version 3.8 should work out of the box.
-
-To install, run:
-
-```
-brew install python@3.8
-python3 -m pip install --upgrade pip # on mac
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
 ```
 
-Then add this to ~/.zshrc
+### Prepare the Poetry environment
 
-```
-export PATH="/opt/homebrew/opt/python@3.8/bin:$PATH"
-```
-
-Some packages may not install properly when installing or compiling Cairo
-
-Follow these instructions to fix this: https://github.com/OpenZeppelin/nile/issues/22#issuecomment-945179452
-
-You may also run into issues with certain libraries. This is an example:
-
-```
-Traceback (most recent call last):
-  File "/opt/homebrew/bin/starknet-compile", line 7, in <module>
-    from starkware.starknet.compiler.compile import main  # noqa
-  File "/opt/homebrew/lib/python3.10/site-packages/starkware/starknet/compiler/compile.py", line 7, in <module>
-    from starkware.cairo.lang.compiler.assembler import assemble
-  File "/opt/homebrew/lib/python3.10/site-packages/starkware/cairo/lang/compiler/assembler.py", line 3, in <module>
-    from starkware.cairo.lang.compiler.debug_info import DebugInfo, HintLocation, InstructionLocation
-  File "/opt/homebrew/lib/python3.10/site-packages/starkware/cairo/lang/compiler/debug_info.py", line 11, in <module>
-    from starkware.starkware_utils.validated_dataclass import ValidatedMarshmallowDataclass
-  File "/opt/homebrew/lib/python3.10/site-packages/starkware/starkware_utils/validated_dataclass.py", line 12, in <module>
-    from starkware.starkware_utils.validated_fields import Field
-  File "/opt/homebrew/lib/python3.10/site-packages/starkware/starkware_utils/validated_fields.py", line 13, in <module>
-    from starkware.starkware_utils.marshmallow_dataclass_fields import (
-  File "/opt/homebrew/lib/python3.10/site-packages/starkware/starkware_utils/marshmallow_dataclass_fields.py", line 8, in <module>
-    from frozendict import frozendict
-  File "/opt/homebrew/lib/python3.10/site-packages/frozendict/__init__.py", line 16, in <module>
-    class frozendict(collections.Mapping):
-AttributeError: module 'collections' has no attribute 'Mapping'
+```bash
+poetry install
 ```
 
-To resolve this, reinstall the package with:
+And then to jump into the virtual environment for the project:
 
-```
-python3 -m pip install LIBRARY_NAME -U
-# e.g. frozendict is the broken library
-python3 -m pip install frozendict -U
+```bash
+poetry shell
 ```
 
 ### Install npm packages
@@ -277,7 +237,7 @@ networks: {
 Compile (example):
 
 ```
-npm run compile contracts/token/erc20/presets/ERC20_Mintable_Capped.cairo
+npm run compile
 ```
 
 Run tests - make sure `starknet-devnet` is running if tests are to be run on devnet:
@@ -286,9 +246,74 @@ Run tests - make sure `starknet-devnet` is running if tests are to be run on dev
 npm test [path-to-test]
 ```
 
+# Troubleshooting Hardhat
+
+## Potential issues with M1 Macs
+
+## "gmp.h" not found
+
+Instead of running plain `poetry install`, run:
+
+```bash
+CFLAGS=-I`brew --prefix gmp`/include LDFLAGS=-L`brew --prefix gmp`/lib poetry install
+```
+
+# Python
+
+You may not have success with every version of Python. Version 3.8 should work out of the box.
+
+To install, run:
+
+```
+brew install python@3.8
+python3 -m pip install --upgrade pip # on mac
+```
+
+Then add this to ~/.zshrc
+
+```
+export PATH="/opt/homebrew/opt/python@3.8/bin:$PATH"
+```
+
+Some packages may not install properly when installing or compiling Cairo
+
+Follow these instructions to fix this: https://github.com/OpenZeppelin/nile/issues/22#issuecomment-945179452
+
+You may also run into issues with certain libraries. This is an example:
+
+```
+Traceback (most recent call last):
+  File "/opt/homebrew/bin/starknet-compile", line 7, in <module>
+    from starkware.starknet.compiler.compile import main  # noqa
+  File "/opt/homebrew/lib/python3.10/site-packages/starkware/starknet/compiler/compile.py", line 7, in <module>
+    from starkware.cairo.lang.compiler.assembler import assemble
+  File "/opt/homebrew/lib/python3.10/site-packages/starkware/cairo/lang/compiler/assembler.py", line 3, in <module>
+    from starkware.cairo.lang.compiler.debug_info import DebugInfo, HintLocation, InstructionLocation
+  File "/opt/homebrew/lib/python3.10/site-packages/starkware/cairo/lang/compiler/debug_info.py", line 11, in <module>
+    from starkware.starkware_utils.validated_dataclass import ValidatedMarshmallowDataclass
+  File "/opt/homebrew/lib/python3.10/site-packages/starkware/starkware_utils/validated_dataclass.py", line 12, in <module>
+    from starkware.starkware_utils.validated_fields import Field
+  File "/opt/homebrew/lib/python3.10/site-packages/starkware/starkware_utils/validated_fields.py", line 13, in <module>
+    from starkware.starkware_utils.marshmallow_dataclass_fields import (
+  File "/opt/homebrew/lib/python3.10/site-packages/starkware/starkware_utils/marshmallow_dataclass_fields.py", line 8, in <module>
+    from frozendict import frozendict
+  File "/opt/homebrew/lib/python3.10/site-packages/frozendict/__init__.py", line 16, in <module>
+    class frozendict(collections.Mapping):
+AttributeError: module 'collections' has no attribute 'Mapping'
+```
+
+To resolve this, reinstall the package with:
+
+```
+python3 -m pip install LIBRARY_NAME -U
+# e.g. frozendict is the broken library
+python3 -m pip install frozendict -U
+```
+
 # Resources
 
 - [`Official Cairo Setup Guide`](https://www.cairo-lang.org/docs/quickstart.html)
 - [`@shardlabs/starknet-hardhat-plugin`](https://github.com/Shard-Labs/starknet-hardhat-plugin)
 - [`@shardlabs/starknet-devnet`](https://github.com/Shard-Labs/starknet-devnet)
 - [`starknet.js`](https://github.com/0xs34n/starknet.js)
+- [`Poetry Documentation`](https://python-poetry.org/)

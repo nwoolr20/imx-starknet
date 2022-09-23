@@ -87,6 +87,23 @@ export function feltArrToStr(felts: bigint[]): string {
 }
 
 /**
+ * Converts a string to a felt (short string). A Cairo short string (felt) represents up to 31 utf-8 characters.
+ * @param {string} str - The string to convert
+ * @returns {bigint} - The string converted to a felt (short string)
+ */
+export function strToFelt(str: string): BigInt {
+  if (str.length > 31) {
+    throw Error("unable to convert to felt: string greater than 31 chars");
+  }
+  const strarr = str.split("");
+  const ss = strarr.reduce(
+    (memo, c) => memo + c.charCodeAt(0).toString(16),
+    ""
+  );
+  return BigInt("0x" + ss);
+}
+
+/**
  * Expects a StarkNet transaction to fail
  * @param {Promise<any>} transaction - The transaction that should fail
  * @param {string} [message] - The message returned from StarkNet
