@@ -74,6 +74,8 @@ namespace ERC2981_UniDirectional_Mutable {
         }
 
         local royalty: RoyaltyInfo = royalty;
+        tempvar syscall_ptr = syscall_ptr;
+        tempvar pedersen_ptr = pedersen_ptr;
 
         // royalty_amount = sale_price * fee_basis_points / 10000
         let (x: Uint256) = SafeUint256.mul(sale_price, Uint256(royalty.fee_basis_points, 0));
