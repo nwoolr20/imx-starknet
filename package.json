@@ -17,7 +17,7 @@
     "@nomiclabs/hardhat-web3": "^2.0.0",
     "@openzeppelin/contracts": "^4.7.3",
     "@openzeppelin/hardhat-upgrades": "^1.21.0",
-    "@shardlabs/starknet-hardhat-plugin": "^0.6.8",
+    "@shardlabs/starknet-hardhat-plugin": "^0.8.0-alpha.5",
     "@typechain/ethers-v5": "^7.2.0",
     "@typechain/hardhat": "^2.3.1",
     "@types/chai": "^4.3.1",
